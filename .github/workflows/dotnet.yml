@@ -1,0 +1,25 @@
+name: .NET ehitamine
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Installimine .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Taasta dependencies
+      run: dotnet restore
+    - name: Ehita
+      run: dotnet build --no-restore
+    - name: Testi
+      run: dotnet test --no-build --verbosity normal

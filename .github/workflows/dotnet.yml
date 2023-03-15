@@ -2,9 +2,11 @@ name: .NET ehitamine
 
 on:
   push:
-    branches: [ main ]
+    paths:
+    - 'Program.cs'
   pull_request:
-    branches: [ main ]
+    paths:
+    - 'Program.cs'
 
 jobs:
   build:
